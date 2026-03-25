@@ -3,128 +3,36 @@
 <head>
 <title>複讀機 - 語言練習</title>
 <style>
-body {
-    font-family: sans-serif;
-    max-width: 920px;
-    margin: 40px auto;
-    padding: 20px;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    min-height: 100vh;
-    color: #fff;
-}
-.content {
-    background: rgba(0,0,0,0.88);
-    padding: 35px;
-    border-radius: 18px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.6);
-}
-.announcement {
-    background: #00c853;
-    color: #fff;
-    padding: 16px 20px;
-    text-align: center;
-    font-weight: bold;
-    font-size: 1.18em;
-    border-radius: 12px 12px 0 0;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-}
-header { text-align: center; margin-bottom: 25px; }
-h1 {
-    font-size: 3.2em;
-    margin: 0;
-    color: #fff;
-    text-shadow: 0 3px 8px rgba(0,0,0,0.9);
-}
-.main-flex {
-    display: flex;
-    gap: 18px;
-    align-items: stretch;
-}
-.side-box {
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.4);
-    border-radius: 12px;
-    padding: 18px 15px;
-    width: 175px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-}
-.side-box .title {
-    font-size: 0.95em;
-    opacity: 0.9;
-    margin-bottom: 6px;
-}
-.side-box .content {
-    font-size: 1.05em;
-    line-height: 1.4;
-}
-.center-area { flex: 1; }
-.language-select {
-    margin-bottom: 12px;
-}
-.language-select select {
-    padding: 10px 14px;
-    font-size: 1.08em;
-    background: rgba(255,255,255,0.25);
-    color: #fff;
-    border: 2px solid rgba(255,255,255,0.6);
-    border-radius: 8px;
-    width: 100%;
-    cursor: pointer;
-}
-.language-select select option {
-    background: #ffffff;
-    color: #000000;
-}
-textarea {
-    width: 100%;
-    height: 220px;
-    background: rgba(255,255,255,0.12);
-    color: #fff;
-    border: 1px solid rgba(255,255,255,0.5);
-    border-radius: 10px;
-    padding: 12px;
-    font-size: 1.05em;
-}
-button {
-    background: #ff4d4d;
-    color: #fff;
-    border: none;
-    padding: 12px 24px;
-    margin: 6px 4px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1.05em;
-}
-.file-area { margin: 12px 0; }
+body {font-family:sans-serif;max-width:920px;margin:40px auto;padding:20px;background-size:cover;background-position:center;background-attachment:fixed;min-height:100vh;color:#fff;}
+.content {background:rgba(0,0,0,0.88);padding:35px;border-radius:18px;box-shadow:0 8px 25px rgba(0,0,0,0.6);}
+.announcement {background:#00c853;color:#fff;padding:16px 20px;text-align:center;font-weight:bold;font-size:1.18em;border-radius:12px 12px 0 0;margin-bottom:20px;box-shadow:0 4px 12px rgba(0,0,0,0.3);}
+header {text-align:center;margin-bottom:25px;}
+h1 {font-size:3.2em;margin:0;color:#fff;text-shadow:0 3px 8px rgba(0,0,0,0.9);}
+.main-flex {display:flex;gap:18px;align-items:stretch;}
+.side-box {background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.4);border-radius:12px;padding:18px 15px;width:175px;text-align:center;display:flex;flex-direction:column;justify-content:center;text-shadow:0 2px 4px rgba(0,0,0,0.8);}
+.side-box .title {font-size:0.95em;opacity:0.9;margin-bottom:6px;}
+.side-box .content {font-size:1.05em;line-height:1.4;}
+.center-area {flex:1;}
+.language-select,.voice-select,.speed-control,.interval-control {margin-bottom:12px;}
+select {padding:10px 14px;font-size:1.08em;background:rgba(255,255,255,0.25);color:#fff;border:2px solid rgba(255,255,255,0.6);border-radius:8px;width:100%;cursor:pointer;}
+select option {background:#fff;color:#000;}
+.speed-control input,.interval-control input {width:100%;}
+textarea {width:100%;height:220px;background:rgba(255,255,255,0.12);color:#fff;border:1px solid rgba(255,255,255,0.5);border-radius:10px;padding:12px;font-size:1.05em;}
+button {background:#ff4d4d;color:#fff;border:none;padding:12px 24px;margin:6px 4px;border-radius:8px;cursor:pointer;font-size:1.05em;}
+.file-area {margin:12px 0;}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/mammoth@1.6.0/mammoth.browser.min.js"></script>
 </head>
 <body>
 <div class="content">
-    <div class="announcement">
-        公告 🍇 支持小澤澤——DSE加油!!!!!
-    </div>
-
+    <div class="announcement">公告 🍇 支持小澤澤——DSE加油!!!!!</div>
     <header><h1>複讀機</h1></header>
-
     <div class="main-flex">
-        <div class="side-box">
-            <div class="title">網站</div>
-            <div class="content">由朱信徒<br>用AI搭建</div>
-        </div>
-
+        <div class="side-box"><div class="title">網站</div><div class="content">由朱信徒<br>用AI搭建</div></div>
         <div class="center-area">
             <p>貼上或上傳文件 → 重複朗讀</p>
-            
             <div class="language-select">
-                <strong>朗讀語言：</strong> 
+                <strong>朗讀語言：</strong>
                 <select id="languageSelect">
                     <option value="auto" selected>自動檢測 (中英混合智能)</option>
                     <option value="zh-HK">粵語 (Cantonese)</option>
@@ -132,71 +40,100 @@ button {
                     <option value="en-US">English</option>
                 </select>
             </div>
-
-            <textarea id="input" placeholder="在此貼上文字或上傳文件..."></textarea>
-            
-            <div class="file-area">
-                <input type="file" id="fileInput" accept=".txt,.md,.docx,.pdf">
+            <div class="voice-select">
+                <strong>語音種類：</strong>
+                <select id="voiceSelect"></select>
             </div>
-            
+            <div class="speed-control">
+                <strong>語速：<span id="speedValue">1.0</span>x</strong>
+                <input type="range" id="speed" min="0.5" max="3" step="0.1" value="1">
+            </div>
+            <div class="interval-control">
+                <strong>循環間隔：<span id="intervalValue">2.8</span>秒</strong>
+                <input type="range" id="interval" min="0.1" max="5" step="0.1" value="2.8">
+            </div>
+            <textarea id="input" placeholder="在此貼上文字或上傳文件..."></textarea>
+            <div class="file-area"><input type="file" id="fileInput" accept=".txt,.md,.docx,.pdf"></div>
             <div>
                 <button onclick="repeat()">▶ 重複一次</button>
                 <button onclick="loop()">🔁 循環直到停止</button>
                 <button onclick="stop()">⏹ 停止</button>
             </div>
         </div>
-
-        <div class="side-box">
-            <div class="title">作用</div>
-            <div class="content">英文語音<br>複讀機</div>
-        </div>
+        <div class="side-box"><div class="title">作用</div><div class="content">英文語音<br>複讀機</div></div>
     </div>
-
     <div class="main-flex" style="margin-top:18px;">
-        <div class="side-box">
-            <div class="title">網站</div>
-            <div class="content">由陽神<br>用精神贊助</div>
-        </div>
-
+        <div class="side-box"><div class="title">網站</div><div class="content">由陽神<br>用精神贊助</div></div>
         <div class="center-area"></div>
-
-        <div class="side-box">
-            <div class="title">功能</div>
-            <div class="content">網站支持<br>word,txt文档</div>
-        </div>
+        <div class="side-box"><div class="title">功能</div><div class="content">網站支持<br>word,txt文档</div></div>
     </div>
 </div>
 
 <script>
-let utterance, interval;
+let utterance, interval, currentRate = 1, currentInterval = 2.8, voices = [];
+
+const speedSlider = document.getElementById('speed');
+const speedValue = document.getElementById('speedValue');
+speedSlider.addEventListener('input', () => { currentRate = parseFloat(speedSlider.value); speedValue.textContent = currentRate.toFixed(1); });
+
+const intervalSlider = document.getElementById('interval');
+const intervalValue = document.getElementById('intervalValue');
+intervalSlider.addEventListener('input', () => { currentInterval = parseFloat(intervalSlider.value); intervalValue.textContent = currentInterval.toFixed(1); });
+
+function populateVoiceSelect() {
+  const select = document.getElementById('voiceSelect');
+  select.innerHTML = '';
+  voices.forEach(v => {
+    const opt = document.createElement('option');
+    opt.value = v.name;
+    opt.textContent = `${v.name} (${v.lang})`;
+    select.appendChild(opt);
+  });
+}
+function loadVoices() {
+  voices = speechSynthesis.getVoices();
+  if (voices.length) populateVoiceSelect();
+}
+speechSynthesis.onvoiceschanged = loadVoices;
+window.onload = () => { loadVoices(); };
+
+function getSelectedVoice() {
+  const name = document.getElementById('voiceSelect').value;
+  return voices.find(v => v.name === name) || null;
+}
 
 function detectLangForSegment(segment) {
-    return /[\u4e00-\u9fa5]/.test(segment) ? "zh-HK" : "en-US";
+  return /[\u4e00-\u9fa5]/.test(segment) ? "zh-HK" : "en-US";
 }
 
 function speakMixed(text) {
-    const select = document.getElementById('languageSelect').value;
-    if (select !== "auto") {
-        utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = select;
-        speechSynthesis.speak(utterance);
-        return;
-    }
-    // 智能分割中英混合
-    const regex = /([\u4e00-\u9fa5]+|[^\u4e00-\u9fa5]+)/g;
-    const segments = text.match(regex) || [text];
-    let i = 0;
-    function speakNext() {
-        if (i >= segments.length) return;
-        utterance = new SpeechSynthesisUtterance(segments[i]);
-        utterance.lang = detectLangForSegment(segments[i]);
-        utterance.onend = () => { i++; speakNext(); };
-        speechSynthesis.speak(utterance);
-    }
-    speakNext();
+  const select = document.getElementById('languageSelect').value;
+  const voice = getSelectedVoice();
+  if (select !== "auto") {
+    utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = select;
+    utterance.rate = currentRate;
+    if (voice) utterance.voice = voice;
+    speechSynthesis.speak(utterance);
+    return;
+  }
+  const regex = /([\u4e00-\u9fa5]+|[^\u4e00-\u9fa5]+)/g;
+  const segments = text.match(regex) || [text];
+  let i = 0;
+  function speakNext() {
+    if (i >= segments.length) return;
+    utterance = new SpeechSynthesisUtterance(segments[i]);
+    utterance.lang = detectLangForSegment(segments[i]);
+    utterance.rate = currentRate;
+    if (voice) utterance.voice = voice;
+    utterance.onend = () => { i++; speakNext(); };
+    speechSynthesis.speak(utterance);
+  }
+  speakNext();
 }
 
 function repeat() {
+  speechSynthesis.cancel();
   const text = document.getElementById('input').value.trim();
   if (!text) return;
   speakMixed(text);
@@ -206,7 +143,7 @@ function loop() {
   stop();
   const text = document.getElementById('input').value.trim();
   if (!text) return;
-  interval = setInterval(() => speakMixed(text), 2800);
+  interval = setInterval(() => speakMixed(text), currentInterval * 1000);
 }
 
 function stop() {
