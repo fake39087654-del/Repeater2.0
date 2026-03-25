@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>TextRepeater - Language Practice</title>
+<style>body{font-family:sans-serif;max-width:600px;margin:40px auto;padding:20px;}textarea{width:100%;height:200px;}</style>
+</head>
+<body>
+<h1>Text Repeater</h1>
+<p>Paste article/word/document → repeat with TTS for language learning</p>
+<textarea id="input" placeholder="Paste text here..."></textarea><br><br>
+<button onclick="repeat()">▶ Repeat Once</button>
+<button onclick="loop()">🔁 Loop Until Stop</button>
+<button onclick="stop()">⏹ Stop</button>
+<script>
+let utterance, interval;
+function repeat() {
+  const text = document.getElementById('input').value.trim();
+  if (!text) return;
+  utterance = new SpeechSynthesisUtterance(text);
+  speechSynthesis.speak(utterance);
+}
+function loop() {
+  stop();
+  const text = document.getElementById('input').value.trim();
+  if (!text) return;
+  interval = setInterval(() => { utterance = new SpeechSynthesisUtterance(text); speechSynthesis.speak(utterance); }, 2500);
+}
+function stop() {
+  speechSynthesis.cancel();
+  if (interval) clearInterval(interval);
+}
+</script>
+</body>
+</html>
