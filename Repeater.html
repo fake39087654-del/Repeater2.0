@@ -1,48 +1,205 @@
-**先上传6张景色图片到仓库根目录，命名为 bg1.jpg 到 bg6.jpg**
-
-复制以下**完整代码**覆盖 Repeater.html：
-
-```html
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-HK">
 <head>
-<title>TextRepeater - 语言练习</title>
+<title>複讀機 - 語言練習</title>
 <style>
-body{font-family:sans-serif;max-width:600px;margin:40px auto;padding:20px;background-size:cover;background-position:center;background-attachment:fixed;min-height:100vh;}
-.content{background:rgba(0,0,0,0.65);padding:30px;border-radius:15px;color:#fff;}
-textarea{width:100%;height:200px;background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,255,255,0.3);}
-button{background:#ff4d4d;color:#fff;border:none;padding:10px 20px;margin:5px;border-radius:5px;cursor:pointer;}
+body {
+    font-family: sans-serif;
+    max-width: 920px;
+    margin: 40px auto;
+    padding: 20px;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: #fff;
+}
+.content {
+    background: rgba(0,0,0,0.88);
+    padding: 35px;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+}
+.announcement {
+    background: linear-gradient(90deg, #00b140, #00d16c);
+    color: #fff;
+    padding: 14px 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.15em;
+    border-radius: 12px 12px 0 0;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.7);
+}
+header { text-align: center; margin-bottom: 25px; }
+h1 {
+    font-size: 3.2em;
+    margin: 0;
+    color: #fff;
+    text-shadow: 0 3px 8px rgba(0,0,0,0.9);
+}
+.main-flex {
+    display: flex;
+    gap: 18px;
+    align-items: stretch;
+}
+.side-box {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 12px;
+    padding: 18px 15px;
+    width: 175px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+.side-box .title {
+    font-size: 0.95em;
+    opacity: 0.9;
+    margin-bottom: 6px;
+}
+.side-box .content {
+    font-size: 1.05em;
+    line-height: 1.4;
+}
+.center-area { flex: 1; }
+.language-select {
+    margin-bottom: 12px;
+}
+.language-select select {
+    padding: 8px 12px;
+    font-size: 1.05em;
+    background: rgba(255,255,255,0.2);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.5);
+    border-radius: 6px;
+}
+textarea {
+    width: 100%;
+    height: 220px;
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.5);
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 1.05em;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+}
+button {
+    background: #ff4d4d;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    margin: 6px 4px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.05em;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.7);
+}
+.file-area { margin: 12px 0; }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/mammoth@1.6.0/mammoth.browser.min.js"></script>
 </head>
 <body>
 <div class="content">
-<h1>Text Repeater</h1>
-<p>粘贴或上传文档 → 重复朗读（语言学习）</p>
-<textarea id="input" placeholder="粘贴文字或上传文档..."></textarea><br><br>
-<input type="file" id="fileInput" accept=".txt,.md,.docx,.pdf"><br><br>
-<button onclick="repeat()">▶ 重复一次</button>
-<button onclick="loop()">🔁 循环直到停止</button>
-<button onclick="stop()">⏹ 停止</button>
+    <!-- 公告栏 -->
+    <div class="announcement">
+        公告 🍇 支持小澤澤——DSE加油!!!!!
+    </div>
+
+    <header><h1>複讀機</h1></header>
+
+    <div class="main-flex">
+        <!-- Left Top -->
+        <div class="side-box">
+            <div class="title">網站</div>
+            <div class="content">由朱信徒<br>用AI搭建</div>
+        </div>
+
+        <div class="center-area">
+            <p>貼上或上傳文件 → 重複朗讀</p>
+            
+            <div class="language-select">
+                <strong>朗讀語言：</strong> 
+                <select id="languageSelect">
+                    <option value="zh-HK">粵語 (Cantonese)</option>
+                    <option value="zh-CN">普通話 (Mandarin)</option>
+                    <option value="en-US">English</option>
+                </select>
+            </div>
+
+            <textarea id="input" placeholder="在此貼上文字或上傳文件..."></textarea>
+            
+            <div class="file-area">
+                <input type="file" id="fileInput" accept=".txt,.md,.docx,.pdf">
+            </div>
+            
+            <div>
+                <button onclick="repeat()">▶ 重複一次</button>
+                <button onclick="loop()">🔁 循環直到停止</button>
+                <button onclick="stop()">⏹ 停止</button>
+            </div>
+        </div>
+
+        <!-- Right Top -->
+        <div class="side-box">
+            <div class="title">作用</div>
+            <div class="content">英文語音<br>複讀機</div>
+        </div>
+    </div>
+
+    <div class="main-flex" style="margin-top:18px;">
+        <!-- Left Bottom -->
+        <div class="side-box">
+            <div class="title">網站</div>
+            <div class="content">由陽神<br>用精神贊助</div>
+        </div>
+
+        <div class="center-area"></div>
+
+        <!-- Right Bottom -->
+        <div class="side-box">
+            <div class="title">功能</div>
+            <div class="content">網站支持<br>PDF, Word, TXT文件</div>
+        </div>
+    </div>
 </div>
+
 <script>
 let utterance, interval;
+
+function getSelectedLang() {
+    return document.getElementById('languageSelect').value;
+}
+
 function repeat() {
   const text = document.getElementById('input').value.trim();
   if (!text) return;
   utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getSelectedLang();
   speechSynthesis.speak(utterance);
 }
+
 function loop() {
   stop();
   const text = document.getElementById('input').value.trim();
   if (!text) return;
-  interval = setInterval(() => { utterance = new SpeechSynthesisUtterance(text); speechSynthesis.speak(utterance); }, 2500);
+  const lang = getSelectedLang();
+  interval = setInterval(() => {
+    utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = lang;
+    speechSynthesis.speak(utterance);
+  }, 2500);
 }
+
 function stop() {
   speechSynthesis.cancel();
   if (interval) clearInterval(interval);
 }
+
 document.getElementById('fileInput').addEventListener('change', e => {
   const file = e.target.files[0];
   if (!file) return;
@@ -56,22 +213,20 @@ document.getElementById('fileInput').addEventListener('change', e => {
           div.innerHTML = res.value;
           document.getElementById('input').value = div.textContent.trim();
         })
-        .catch(() => alert('DOCX 解析失败'));
+        .catch(() => alert('DOCX 解析失敗'));
     };
     reader.readAsArrayBuffer(file);
   } else if (ext === 'pdf') {
-    alert('PDF 暂不支持，请复制文字后粘贴');
+    alert('PDF 暫不支持，請複製文字後貼上');
   } else {
     reader.onload = ev => document.getElementById('input').value = ev.target.result;
     reader.readAsText(file);
   }
 });
+
 const backgrounds = ['bg1.jpg','bg2.jpg','bg3.jpg','bg4.jpg','bg5.jpg','bg6.jpg'];
 const randomBg = backgrounds[Math.floor(Math.random() * backgrounds.length)];
 document.body.style.backgroundImage = `url(${randomBg})`;
 </script>
 </body>
 </html>
-```
-
-上传后1分钟刷新网站即可随机背景。
