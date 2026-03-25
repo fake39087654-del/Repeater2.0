@@ -1,17 +1,30 @@
+**先上传6张景色图片到仓库根目录，命名为 bg1.jpg 到 bg6.jpg**
+
+复制以下**完整代码**覆盖 Repeater.html：
+
+```html
 <!DOCTYPE html>
 <html lang="zh">
 <head>
 <title>TextRepeater - 语言练习</title>
-<style>body{font-family:sans-serif;max-width:600px;margin:40px auto;padding:20px;}textarea{width:100%;height:200px;}</style>
+<style>
+body{font-family:sans-serif;max-width:600px;margin:40px auto;padding:20px;background-size:cover;background-position:center;background-attachment:fixed;min-height:100vh;}
+.content{background:rgba(0,0,0,0.65);padding:30px;border-radius:15px;color:#fff;}
+textarea{width:100%;height:200px;background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,255,255,0.3);}
+button{background:#ff4d4d;color:#fff;border:none;padding:10px 20px;margin:5px;border-radius:5px;cursor:pointer;}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/mammoth@1.6.0/mammoth.browser.min.js"></script>
 </head>
 <body>
+<div class="content">
 <h1>Text Repeater</h1>
 <p>粘贴或上传文档 → 重复朗读（语言学习）</p>
 <textarea id="input" placeholder="粘贴文字或上传文档..."></textarea><br><br>
-<input type="file" id="fileInput" accept=".txt,.md"><br><br>
+<input type="file" id="fileInput" accept=".txt,.md,.docx,.pdf"><br><br>
 <button onclick="repeat()">▶ 重复一次</button>
 <button onclick="loop()">🔁 循环直到停止</button>
 <button onclick="stop()">⏹ 停止</button>
+</div>
 <script>
 let utterance, interval;
 function repeat() {
@@ -33,10 +46,32 @@ function stop() {
 document.getElementById('fileInput').addEventListener('change', e => {
   const file = e.target.files[0];
   if (!file) return;
+  const ext = file.name.split('.').pop().toLowerCase();
   const reader = new FileReader();
-  reader.onload = ev => document.getElementById('input').value = ev.target.result;
-  reader.readAsText(file);
+  if (ext === 'docx') {
+    reader.onload = ev => {
+      mammoth.convertToHtml({arrayBuffer: ev.target.result})
+        .then(res => {
+          const div = document.createElement('div');
+          div.innerHTML = res.value;
+          document.getElementById('input').value = div.textContent.trim();
+        })
+        .catch(() => alert('DOCX 解析失败'));
+    };
+    reader.readAsArrayBuffer(file);
+  } else if (ext === 'pdf') {
+    alert('PDF 暂不支持，请复制文字后粘贴');
+  } else {
+    reader.onload = ev => document.getElementById('input').value = ev.target.result;
+    reader.readAsText(file);
+  }
 });
+const backgrounds = ['bg1.jpg','bg2.jpg','bg3.jpg','bg4.jpg','bg5.jpg','bg6.jpg'];
+const randomBg = backgrounds[Math.floor(Math.random() * backgrounds.length)];
+document.body.style.backgroundImage = `url(${randomBg})`;
 </script>
 </body>
 </html>
+```
+
+上传后1分钟刷新网站即可随机背景。
